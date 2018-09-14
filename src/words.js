@@ -1,6 +1,13 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
-export default props => {
+const Words = props => {
+    setTimeout(()=>{
+        props.dispatch({
+            type:'UPDATE_SENTENCE',
+            payload: "kfja ;sdlkjfasldk jfaslkdjf ;aklsdjf lkadsjf l;kadsjf lk;asdjf k;lasdjfkasdjf"
+          })
+    },3000)
     const words = props.sentence.split(' ')
     return (
         <div>
@@ -9,3 +16,11 @@ export default props => {
         </div>
     )
 }
+
+const mapStateToProps = state => ({
+    sentence: state.sentence
+})
+
+const connectedWords = connect(mapStateToProps)(Words)
+
+export default connectedWords

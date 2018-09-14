@@ -1,6 +1,7 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
-export default props => {
+const Numbers = props => {
     let numberOfWords
     if (props.sentence === '') {
         numberOfWords = 0
@@ -14,3 +15,9 @@ export default props => {
         </div>
     )
 }
+
+const mapStateToProps = state => state
+
+const connectedNumbers = connect(mapStateToProps)(Numbers)
+
+export default connectedNumbers

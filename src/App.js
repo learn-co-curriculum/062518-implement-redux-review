@@ -2,26 +2,54 @@ import React, { Component } from 'react';
 import Form from './form'
 import Words from './words'
 import Numbers from './numbers'
+import store from './store'
+import {Provider} from 'react-redux'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      sentence:''
-    }
+const tramezzino = store
+
+// class App extends Component {
+
+//   handleInputChanges = sentence => {
+//     store.dispatch({
+//       type:'UPDATE_SENTENCE',
+//       payload: sentence
+//     })
+//   }
+
+//   render() {
+//     return (
+//       <Provider store={store}>
+//         <React.Fragment>
+//           <Form handleInputChanges={this.handleInputChanges}/>
+//           <Words />
+//           <Numbers />
+//         </React.Fragment>
+//       </Provider>
+//     );
+//   }
+// }
+
+const App = props => {
+
+  const handleInputChanges = sentence => {
+    store.dispatch({
+      type:'UPDATE_SENTENCE',
+      payload: sentence
+    })
   }
 
-  handleInputChanges = sentence => this.setState({sentence})
 
-  render() {
     return (
-      <React.Fragment>
-        <Form handleInputChanges={this.handleInputChanges}/>
-        <Words sentence={this.state.sentence}/>
-        <Numbers sentence={this.state.sentence}/>
-      </React.Fragment>
+      <Provider store={store}>
+        <React.Fragment>
+          <Form handleInputChanges={handleInputChanges}/>
+          <Words />
+          <Numbers />
+        </React.Fragment>
+      </Provider>
     );
-  }
 }
+
+
 
 export default App;
