@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 const Words = props => {
+    // Simulating an action dispatch
     setTimeout(()=>{
         props.dispatch({
             type:'UPDATE_SENTENCE',
